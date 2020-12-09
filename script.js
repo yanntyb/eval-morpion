@@ -90,6 +90,7 @@ function resetButton() {
     })
 }
 
+/*Ajout de l'event pour choisir ia ou player ( bouton)*/
 function ordiOuPlayer(){
     ia.addEventListener("click",function (){
         ordi = true;
