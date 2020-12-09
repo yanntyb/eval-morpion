@@ -1,10 +1,9 @@
 let global = document.getElementById("global");
-let reset = document.getElementsByTagName("button")[0];
+const reset = document.getElementsByTagName("button")[0];
 let player = 1;
 let player1 = document.getElementById("player1").getElementsByTagName("span")[0];
 let player2 = document.getElementById("player2").getElementsByTagName("span")[0];
 let turn = document.getElementById("turn").getElementsByTagName("span")[0];
-
 
 /*Creation de la grille de jeu*/
 function initGame(){
@@ -25,6 +24,7 @@ function initGame(){
 /*Affichage selon le player*/
 function affichage(player){
     let icone = document.createElement("i");
+
     if (player === 1){
         icone.className = "fas fa-dizzy " + player;
         turn.innerHTML = "C'est le tour du joueur " + player;
@@ -50,7 +50,6 @@ function eventSlot(){
         });
     }
 }
-
 
 function resetGame(resetScore){
     let grille = document.getElementById("game");
@@ -121,7 +120,7 @@ function addPoint(player){
     global = resetGame();
 }
 
+/*initialisation de la partie*/
 global.prepend(initGame());
-eventSlot();
-
 global = resetButton();
+eventSlot();
