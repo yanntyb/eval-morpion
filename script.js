@@ -52,13 +52,15 @@ function eventSlot() {
                 player *= -1;
             }
             if (ordi) {
-                ordiSelect()
-                player *= -1;
+                window.setTimeout(function (){
+                    ordiSelect()
+                    player *= -1;
+                },500);
             }
             checkWin(slot);
         });
     }
-};
+}
 
 
 function ordiSelect() {
