@@ -3,6 +3,8 @@ let reset = document.getElementsByTagName("button")[0];
 let player = 1;
 let player1 = document.getElementById("player1").getElementsByTagName("span")[0];
 let player2 = document.getElementById("player2").getElementsByTagName("span")[0];
+let turn = document.getElementById("turn").getElementsByTagName("span")[0];
+
 
 /*Creation de la grille de jeu*/
 function initGame(){
@@ -25,9 +27,11 @@ function affichage(player){
     let icone = document.createElement("i");
     if (player === 1){
         icone.className = "fas fa-dizzy " + player;
+        turn.innerHTML = "C'est le tour du joueur " + player;
     }
     else {
         icone.className = "far fa-dizzy " + player;
+        turn.innerHTML = "C'est le tour du joueur " + 2;
     }
     return icone;
 }
@@ -47,15 +51,19 @@ function eventSlot(){
     }
 }
 
-/*Ajout de l'event reset de partie*/
 function resetGame(){
+    let grille = document.getElementById("game");
+    let global = document.getElementById("global");
+    global.removeChild(grille);
+    global.prepend(initGame());
+    eventSlot();
+    return global;
+}
+
+/*Ajout de l'event reset de partie*/
+function resetButton(){
     reset.addEventListener("click", function (){
-        let grille = document.getElementById("game");
-        let global = document.getElementById("global");
-        global.removeChild(grille);
-        global.prepend(initGame());
-        eventSlot();
-        return global;
+        return resetGame()
     })
 }
 
@@ -68,7 +76,6 @@ function checkWin(grille){
         }
         else {
             classe = classe.className.split(" ")[2]
-            console.log(classe)
         }
         tab.push(classe);
     }
@@ -105,10 +112,10 @@ function addPoint(player){
     else{
         player2.innerHTML = parseInt(player2.innerHTML) + 1;
     }
-
+    global = resetGame();
 }
 
 global.prepend(initGame());
 eventSlot();
 
-global = resetGame();
+global = resetButton();
