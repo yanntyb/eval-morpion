@@ -119,5 +119,6 @@ button {
         position: relative;
         height: 20px;
         z-index:  1;
+        margin-top: 50px;
     }
 }
