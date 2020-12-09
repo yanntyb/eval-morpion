@@ -51,6 +51,7 @@ function eventSlot(){
     }
 }
 
+
 function resetGame(resetScore){
     let grille = document.getElementById("game");
     let global = document.getElementById("global");
@@ -71,6 +72,7 @@ function resetButton(){
     })
 }
 
+/*Verifie si 3 cases cochées sont alignées*/
 function checkWin(grille){
     let tab = [];
     for(let i of grille){
