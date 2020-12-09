@@ -51,11 +51,15 @@ function eventSlot(){
     }
 }
 
-function resetGame(){
+function resetGame(resetScore){
     let grille = document.getElementById("game");
     let global = document.getElementById("global");
     global.removeChild(grille);
     global.prepend(initGame());
+    if(resetScore){
+        player1.innerHTML = 0;
+        player2.innerHTML = 0
+    }
     eventSlot();
     return global;
 }
@@ -63,7 +67,7 @@ function resetGame(){
 /*Ajout de l'event reset de partie*/
 function resetButton(){
     reset.addEventListener("click", function (){
-        return resetGame()
+        return resetGame(true);
     })
 }
 
