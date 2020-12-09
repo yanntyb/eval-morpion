@@ -1,10 +1,14 @@
 let global = document.getElementById("global");
 const reset = document.getElementsByTagName("button")[0];
-let player = 1;
+const ia = document.getElementsByTagName("button")[1];
+const notIa = document.getElementsByTagName("button")[2];
+
 let player1 = document.getElementById("player1").getElementsByTagName("span")[0];
 let player2 = document.getElementById("player2").getElementsByTagName("span")[0];
 let turn = document.getElementById("turn").getElementsByTagName("span")[0];
-let ordi = true;
+
+let player = 1;
+let ordi = false;
 
 
 /*Creation de la grille de jeu*/
@@ -42,23 +46,20 @@ function eventSlot() {
     let slot = document.getElementsByClassName("slot");
     for (let i of slot) {
         i.addEventListener("click", function () {
-            if (ordi) {
-                if (player === -1) {
-                    ordiSelect()
-                    player *= -1;
-                } else {
-                    let span = i.getElementsByTagName("span")[0];
-                    if (span.innerHTML === "") {
-                        span.appendChild(affichage(player));
-                        player *= -1;
-                    }
-                }
-                checkWin(slot);
+            let span = i.getElementsByTagName("span")[0];
+            if (span.innerHTML === "") {
+                span.appendChild(affichage(player));
+                player *= -1;
             }
+            if (ordi) {
+                ordiSelect()
+                player *= -1;
+            }
+            checkWin(slot);
         });
     }
+};
 
-}
 
 function ordiSelect() {
     let slot = document.getElementsByClassName("slot");
@@ -86,6 +87,15 @@ function resetGame(resetScore) {
 function resetButton() {
     reset.addEventListener("click", function () {
         return resetGame(true);
+    })
+}
+
+function ordiOuPlayer(){
+    ia.addEventListener("click",function (){
+        ordi = true;
+    });
+    notIa.addEventListener("click", function(){
+        ordi = false;
     })
 }
 
@@ -132,4 +142,5 @@ function addPoint(player) {
 /*initialisation de la partie*/
 global.prepend(initGame());
 global = resetButton();
+ordiOuPlayer();
 eventSlot();
